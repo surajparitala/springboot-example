@@ -3,8 +3,8 @@ services:
     container_name: postgres
     image: postgres
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: surajdb
+      POSTGRES_PASSWORD: surajpassword
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
@@ -13,6 +13,18 @@ services:
     networks:
       - postgres
     restart: unless-stopped
+  springboot-api:
+    container_name: springboot-api
+    image: surajparitala/springboot-api
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/customer"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+#    command:
+#      - --spring.datasource.url=jdbc:postgresql://postgres:5432/customer
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4

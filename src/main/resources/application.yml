@@ -12,5 +12,5 @@ spring:
         format_sql: true
   datasource:
     url: jdbc:postgresql://localhost:5432/customer
-    username: admin
-    password: admin
+    username: surajdb
+    password: surajpassword
