@@ -31,9 +31,8 @@ jobs:
     steps:
       - name: Send Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '
-          {"text":"Deployment started :progress_bar: :fingerscrossed:"}
-          '
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":"Deployment started :progress_bar: :fingerscrossed:"}'
           ${{ secrets.SLACK_WEBHOOK_URL }}
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
@@ -51,17 +50,15 @@ jobs:
         run: echo "BUILD_NUMBER=$(date '+%d.%m.%Y.%H.%M.%S')" >> $GITHUB_OUTPUT
       - name: Send Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '
-          {"text":"Building with Maven :maven:"}
-          '
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":"Building with Maven :maven:"}'
           ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Build Package
         run: mvn -ntp -B verify -Ddocker.image.tag=${{ steps.build-number.outputs.BUILD_NUMBER}} jib:build
       - name: Send Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '
-          {"text":":docker: Image Tag:${{steps.build-number.outputs.BUILD_NUMBER }} to Docker Hub"}
-          '
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":":docker: Image Tag:${{steps.build-number.outputs.BUILD_NUMBER }} to Docker Hub"}'
           ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Update DockerRun AWS JSON File With new Build Number
         run: |
@@ -72,9 +69,8 @@ jobs:
           cat ../Dockerrun.aws.json
       - name: Send Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '
-          {"text":" :aws: Starting deployment to Elastic Beanstalk"}
-          '
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":" :aws: Starting deployment to Elastic Beanstalk"}'
           ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Deploy to Elastic BeanStalk
         uses: einaregilsson/beanstalk-deploy@v21
@@ -90,9 +86,8 @@ jobs:
           wait_for_environment_recovery: 120
       - name: Send Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '
-          {"text":" :githubloading: Committing to repo :progress_bar: :smile:"}
-          '
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":" :githubloading: Committing to repo :progress_bar: :smile:"}'
           ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Commit and push Dockerrun.aws.json
         run: |
@@ -104,14 +99,12 @@ jobs:
             - name: Send Slack Message
       - name: Send Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '
-          {"text":" Deployment and commit completed :github_check_mark:"}
-          '
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":" Deployment and commit completed :github_check_mark:"}'
           ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Send Slack Message
         if: always()
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '
-          {"text":"Job Status - ${{ job.status }}"}
-          '
+          curl -X POST -H 'Content-type: application/json' 
+          --data '{"text":"Job Status - ${{ job.status }}"}'
           ${{ secrets.SLACK_WEBHOOK_URL }}
