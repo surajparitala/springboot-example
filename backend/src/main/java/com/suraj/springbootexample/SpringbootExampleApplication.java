@@ -1,16 +1,12 @@
 package com.suraj.springbootexample;
 
 import com.github.javafaker.Faker;
-import com.github.javafaker.Name;
 import com.suraj.springbootexample.customer.Customer;
 import com.suraj.springbootexample.customer.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 @SpringBootApplication
