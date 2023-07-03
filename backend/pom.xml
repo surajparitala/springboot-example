@@ -8,9 +8,6 @@
         <version>3.1.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <organization>
-        <name>surajparitala</name>
-    </organization>
     <groupId>com.suraj</groupId>
     <artifactId>springboot-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -18,6 +15,9 @@
     <description>springboot-api</description>
     <properties>
         <java.version>17</java.version>
+        <docker.username>surajparitala</docker.username>
+        <docker.image.name>springboot-api</docker.image.name>
+        <docker.image.tag/>
     </properties>
     <dependencies>
         <dependency>
@@ -114,9 +114,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
-                    <classesDirectory>../target/classes</classesDirectory>
                     <includes>
-                        <include>**/*IntegrationTest.java</include>
                         <include>**/*IT.java</include>
                     </includes>
                         <systemPropertyVariables>
@@ -155,14 +153,6 @@
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>3.3.2</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
                     <from>
                         <image>eclipse-temurin:17</image>
@@ -178,7 +168,7 @@
                         </platforms>
                     </from>
                     <to>
-                        <image>docker.io/${organization.name}/${project.artifactId}:${project.version}</image>
+                        <image>docker.io/${docker.username}/${docker.image.name}:${docker.image.tag}</image>
                         <tags>
                             <tag>
                                 latest

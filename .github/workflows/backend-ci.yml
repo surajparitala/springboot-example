@@ -40,4 +40,4 @@ jobs:
           java-version: '17'
           cache: 'maven'
       - name: Build And Run IT
-        run: mvn -ntp -B package
+        run: mvn -ntp -B verify
