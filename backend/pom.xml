@@ -8,9 +8,6 @@
         <version>3.1.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <organization>
-        <name>surajparitala</name>
-    </organization>
     <groupId>com.suraj</groupId>
     <artifactId>springboot-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -18,6 +15,9 @@
     <description>springboot-api</description>
     <properties>
         <java.version>17</java.version>
+        <docker.username>surajparitala</docker.username>
+        <docker.image.name>springboot-api</docker.image.name>
+        <docker.image.tag/>
     </properties>
     <dependencies>
         <dependency>
@@ -123,6 +123,14 @@
                             <test.server.port>${tomcat.http.port}</test.server.port>
                         </systemPropertyVariables>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -178,7 +186,7 @@
                         </platforms>
                     </from>
                     <to>
-                        <image>docker.io/${organization.name}/${project.artifactId}:${project.version}</image>
+                        <image>docker.io/${docker.username}/${docker.image.name}:${docker.image.tag}</image>
                         <tags>
                             <tag>
                                 latest
