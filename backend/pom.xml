@@ -114,23 +114,13 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
-                    <classesDirectory>../target/classes</classesDirectory>
                     <includes>
-                        <include>**/*IntegrationTest.java</include>
                         <include>**/*IT.java</include>
                     </includes>
                         <systemPropertyVariables>
                             <test.server.port>${tomcat.http.port}</test.server.port>
                         </systemPropertyVariables>
                 </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -163,14 +153,6 @@
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>3.3.2</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
                     <from>
                         <image>eclipse-temurin:17</image>
