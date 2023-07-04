@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "springboot-api",
-      "image": "surajparitala/springboot-api:04.07.2023.02.56.33",
+      "image": "surajparitala/springboot-api:04.07.2023.03.05.08",
       "essential": true,
       "memory": 512,
       "portMappings": [
